@@ -19,8 +19,8 @@ Pricing rules are to be kept flexible, and easy (i.e. quick) to change.
 #### Approach
 Illustrate a solution to the problem with a set of tests *(see `src/__tests__/pricing.test.ts`)*
 
-*Note - the pseudocode in the problem statement uses a mutable javascript API. 
-My solution uses an immutable javascript API, because in the past I've found immutable APIs are easier to work with.*
+Note - the pseudocode in the problem statement uses a mutable javascript API. 
+My solution uses an immutable javascript API, because in the past I've found immutable APIs are easier to work with.
 
  I had planned to build a full graphQL API as well, but ran out of time. I've left the initial graphQL code in the repo
  (some types, see `src/server.ts`, a resolver implementation with a test, and a **very** basic in memory database). 
@@ -60,14 +60,16 @@ As an example, in the problem statement there are 2 discount 'templates' (we cou
 - Volume discount
 - Special price discount
 
-Each template has an id, and each template expects one or more parameters. E.g. to create a special price discount, 
-the discount parameter is simply the special price.
+Each discount template has an id.
 
-A `Discount` is created by instantiating one of these templates with the correct params.
+A `Discount` is created by instantiating one of these templates with 'template params'.
+E.g. to create a special price discount, the discount parameter is simply the special price. For a volume discount,
+the parameters are the amount you get, and the amount you pay for (i.e. buy 1 get 2).
 
 We can store each `Discount` with the id of its template, and it's params in the database.
 
 This allows us to use the same rules across many customers, each with potentially different parameters.
+E.g. MYER gets 5 for the price of 4, but DJ's gets 2 for the price of 1.
 
 We associate a `Discount` with a customer and an ad using a `PricingRule`.
 
