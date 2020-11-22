@@ -32,7 +32,7 @@ My solution uses an immutable javascript API, because in the past I've found imm
 - Discount (priceReducer - code to reduce a set of ads via discouting rules)
 - Pricer (takes ads and discounts and calulates a price)
 
-#### Extensaion - full graphQL API
+#### Extension - full graphQL API
 
 ##### Types
 
