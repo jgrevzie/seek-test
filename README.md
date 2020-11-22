@@ -22,15 +22,19 @@ Illustrate a solution to the problem with a set of tests *(see `src/__tests__/pr
 Note - the pseudocode in the problem statement uses a mutable javascript API. 
 My solution uses an immutable javascript API, because in the past I've found immutable APIs are easier to work with.
 
- I had planned to build a full graphQL API as well, but ran out of time. I've left the initial graphQL code in the repo
- (some types, see `src/server.ts`, a resolver implementation with a test, and a **very** basic in memory database). 
- I'll explain in this README how I was planning to structure the graphQL api.
+I had planned to build a full graphQL API as well, but ran out of time. I've left the initial graphQL code in the repo
+(some types, see `src/server.ts`, a resolver implementation with a test, and a **very** basic in memory database). 
+I'll explain in this README how I was planning to structure the graphQL api.
  
 
 #### Modelling
-- Ad (id, name, price, description)
-- Discount (priceReducer - code to reduce a set of ads via discouting rules)
+- Ad (id, name, price, description). Note - in this simple example, an Ad represents a 'purchased' Ad.
+(i.e. not an ad for sale). With a full graphQL example, Ads & Purchases must be separate so that Ads
+can be reused between customers.
+- Discount (priceReducer - code to reduce a set of ads via discounting rules)
 - Pricer (takes ads and discounts and calulates a price)
+- No need to model a customer, because we represent a customer by a collection of discounts and ads.
+(We need to model a customer for a full API, see below).
 
 #### Extension - full graphQL API
 
