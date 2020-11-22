@@ -1,8 +1,8 @@
 import { ads as adFixtures, classicAdId, premiumAdId, standOutAdId } from '../__fixtures__/ads'
 import { Ad } from '../types/ad'
 import * as Pricing from '../pricing'
-import { getVolumeDiscount } from '../types/volumeDiscount'
-import { getSpecialPriceDiscount } from '../types/specialPriceDiscount'
+import { getVolumeDiscount } from '../discounts/volumeDiscount'
+import { getSpecialPriceDiscount } from '../discounts/specialPriceDiscount'
 
 describe('#getTotal', () => {
   test('customer - default', () => {

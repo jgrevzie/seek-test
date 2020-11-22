@@ -1,5 +1,5 @@
-import { Ad } from '../types/ad'
-import { applyVolumeDiscount, getVolumeDiscount } from '../types/volumeDiscount'
+import { Ad } from '../../types/ad'
+import { applyVolumeDiscount, getVolumeDiscount } from '../volumeDiscount'
 
 const ad: Ad = {
   id: '12345',

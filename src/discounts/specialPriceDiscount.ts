@@ -1,5 +1,5 @@
-import { Discount } from './discount'
-import { Ad } from './ad'
+import { Discount } from '../types/discount'
+import { Ad } from '../types/ad'
 
 export const getSpecialPriceDiscount = (specialPrice: number, adId: string): Discount => ({
   priceReducer: (ads: Ad[]): Ad[] => [
