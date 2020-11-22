@@ -54,7 +54,7 @@ newPricingRule(customerId: String!, discountId: String!, adId: String)
 newPurchase(customerId: String!, adId: String!)
 ```
 
-#### Queries
+##### Queries
 ```
 getCustomer(customerId: String!)
 getAd(adId: String!)
