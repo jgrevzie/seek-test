@@ -32,7 +32,7 @@ My solution uses an immutable javascript API, because in the past I've found imm
 - Discount (priceReducer - code to reduce a set of ads via discouting rules)
 - Pricer (takes ads and discounts and calulates a price)
 
-#### Extra modelling needed for a full graphQL API
+#### Extensaion - full graphQL API
 
 ##### Types
 
@@ -40,7 +40,7 @@ My solution uses an immutable javascript API, because in the past I've found imm
 
 ```
 Customer (id, name, etc)
-Discount (would now need an id, so discounts could be associated with customers)
+Discount (see below for further info)
 PricingRule (associate customer with discounts)
 Purchase (associate customer with ads)
 ```
@@ -49,21 +49,34 @@ Purchase (associate customer with ads)
 ```
 newCustomer(name: String!): Customer)
 newAd(name: String!, price: number!, etc)
-newPurchase(customerId: String!, adId: String!)
 newDiscount(discountType: String!, discountParams)
 newPricingRule(customerId: String!, discountId: String!, adId: String)
+newPurchase(customerId: String!, adId: String!)
+```
+
+#### Queries
+```
+getCustomer(customerId: String!)
+getAd(adId: String!)
+
+(etc)
+
+getCost(customerId: String!)
+
 ```
 
 ##### How would we store discounts and pricing rules in the database?
 
-As an example, in the problem statement there are 2 discount 'templates' (we could add more)
+As an example, in the problem statement there are 2 discount 'templates'
 - Volume discount
 - Special price discount
 
-Each discount template has an id.
+We could easily add more templates.
 
-A `Discount` is created by instantiating one of these templates with 'template params'.
-E.g. to create a special price discount, the discount parameter is simply the special price. For a volume discount,
+Each discount template will get an id. E.g. 'volumeDiscount' & 'specialPriceDiscount'
+
+A `Discount` is created by instantiating one of these templates with 'template paramaters'.
+E.g. to create a special price discount, the discount parameter(s) are simply the special price. For a volume discount,
 the parameters are the amount you get, and the amount you pay for (i.e. buy 1 get 2).
 
 We can store each `Discount` with the id of its template, and it's params in the database.
@@ -71,10 +84,6 @@ We can store each `Discount` with the id of its template, and it's params in the
 This allows us to use the same rules across many customers, each with potentially different parameters.
 E.g. MYER gets 5 for the price of 4, but DJ's gets 2 for the price of 1.
 
-We associate a `Discount` with a customer and an ad using a `PricingRule`.
-
-#### Extensions
-
-Discounts could be associated with a time period, and only discounts valid for this period applied.
+We associate a `Discount` with a customer and an ad using a `PricingRule`. (see 'Types' above for attributes)
 
  
