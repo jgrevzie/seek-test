@@ -24,8 +24,8 @@
     "singleQuote": true,
     "jsxSingleQuote": true
   },
-  "engines" : {
-    "node" : ">=12"
+  "engines": {
+    "node": ">=12"
   },
   "dependencies": {
     "apollo-server-koa": "^2.19.0",
